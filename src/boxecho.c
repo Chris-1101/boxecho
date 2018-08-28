@@ -63,17 +63,16 @@ void build_frame(Section section, int width)
   }
 
   char *string_builder = "   ";
+
   string_builder = concat(string_builder, char_beg);
-  // asprintf(&string_builder, "%s%s", string_builder, char_beg);
 
   for (int i = 0; i < width; i++)
   {
-    // asprintf(&string_builder, "%s%s", string_builder, char_mid);
     string_builder = concat(string_builder, char_mid);
   }
 
   string_builder = concat(string_builder, char_end);
-  // asprintf(&string_builder, "%s%s", string_builder, char_end);
+
   printf("%s\n", string_builder);
   free(string_builder);
 }
