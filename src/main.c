@@ -5,10 +5,12 @@
 
 #include "printc.h"
 #include "termwidth.h"
-#include "printframe.h"
 #include "checkalloc.h"
+#include "printframe.h"
+#include "getinput.h"
+#include "strtrm.h"
 
-// TODO makefile
+// TODO make code wchar-compatible
 
 // Centre Output
 void centre_output(char *str, const size_t len)
@@ -16,7 +18,8 @@ void centre_output(char *str, const size_t len)
   char *res = malloc((len + 1) * sizeof(*res));
   check_alloc(res);
 
-  // TODO trim leading/trailing spaces
+  str = strtrm(str, ' ');
+
   sprintc(str, len, res);
   printf("   ║   %s   ║\n", res);
 
@@ -51,6 +54,7 @@ void format_output(char *str_input, size_t len_max)
       char *words, *cache;
       char *str_builder = malloc(len_max * sizeof(*str_builder) + 1);
       check_alloc(str_builder);
+      memset(str_builder, 0, len_max);
 
       // Break line into a sequence of words
       words = strtok_r(str_input, " ", &cache);
@@ -105,18 +109,16 @@ void format_output(char *str_input, size_t len_max)
   }
 }
 
-// TODO normalise_input()
-
 // --- Box Echo Entry Point ---
 int main(int argc, char **argv)
 {
-  // TODO Replace with normalise_input() call
-  char str_input[] = "\"Throughout a ship's lifespan, the parts of it that weather and decay are gradually replaced and the old parts are stored. Once every part of the ship has been entirely replaced, withareallylongwordthatsgoingtoteartheterminaltopieccesandreallybadeggsyohohothrowinsomebottlesofrumtoo piece by piece, can it still be considered the same ship? Furthermore, if you were to take all of the old pieces that you stored and used to build another ship, would this be the original ship?\"\n\n-- The Ship of Theseus";
-
-  char *ptr_input = &str_input[0];
+  // Normalise Input
+  char *str_input = malloc(BUFSIZ * sizeof(*str_input));
+  check_alloc(str_input);
+  get_input(argc, argv, str_input);
 
   // Simulate echo's behaviour with no input
-  if ((ptr_input != NULL) && (ptr_input[0] == '\0'))
+  if ((str_input != NULL) && (str_input[0] == '\0'))
   {
     printf("\n");
     return 0;
@@ -141,13 +143,14 @@ int main(int argc, char **argv)
   printf("\n");
   print_frame(S_TOP, width->FRAME);
   print_frame(S_SPACER, width->FRAME);
-  format_output(ptr_input, width->CONTENT);
+  format_output(str_input, width->CONTENT);
   print_frame(S_SPACER, width->FRAME);
   print_frame(S_BOTTOM, width->FRAME);
   printf("\n");
 
   // ---
 
+  free(str_input);
   free(width);
 
   return 0;
