@@ -4,7 +4,7 @@
 #include "strtrm.h"
 
 // Trim Character From String Start/End
-char* strtrm(char *str, const char chr)
+char *strtrm(char *str, const char chr)
 {
   if (str == NULL)
   {

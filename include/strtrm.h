@@ -1,7 +1,7 @@
 #ifndef TRIMCHAR_H
 #define TRIMCHAR_H
 
-char* strtrm(char *str, const char chr);
+char *strtrm(char *str, const char chr);
 
   /* Trim Character From String
    * --------------------------
