@@ -1,8 +1,6 @@
-# gcc src/main.c src/printc.c src/termwidth.c src/printframe.c src/checkalloc.c src/getinput.c src/strtrm.c -iquote lib/ -Wall -o bin/boxecho
-
 # Directory Structure
 DIR_SRC = src
-DIR_INC = lib
+DIR_INC = include
 DIR_OBJ = obj
 DIR_BIN = bin
 
