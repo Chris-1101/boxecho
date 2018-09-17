@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "printc.h"
+#include "checkalloc.h"
 
 // String-Print Centre
 void sprintc(const char *str, size_t len_ctr, char *res)
@@ -27,13 +28,7 @@ void sprintc(const char *str, size_t len_ctr, char *res)
 
   size_t len_padding = (len_ctr - len_str) / 2;
   char *padding = calloc(len_padding + 1, sizeof(*padding));
-
-  if (!padding)
-  {
-    fprintf(stderr, "Error allocating memory in sprintc()");
-    abort();
-  }
-
+  check_alloc(padding);
   memset(padding, ' ', len_padding);
 
   sprintf(res, "%s%s%s%s", padding, parity_shift, str, padding);
@@ -44,12 +39,7 @@ void sprintc(const char *str, size_t len_ctr, char *res)
 void printc(const char *str, size_t len)
 {
   char *output = malloc(len * sizeof(*output));
-
-  if (!output)
-  {
-    fprintf(stderr, "Error allocating memory in printc()");
-    abort();
-  }
+  check_alloc(output);
 
   sprintc(str, len, output);
   printf("%s\n", output);
