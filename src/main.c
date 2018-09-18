@@ -6,11 +6,44 @@
 #include "printc.h"
 #include "termwidth.h"
 #include "checkalloc.h"
-#include "printframe.h"
 #include "getinput.h"
 #include "strtrm.h"
 
 // TODO make code wchar-compatible
+
+// Frame Sections
+typedef enum Section {
+  S_TOP, S_SPACER, S_BOTTOM
+} Section;
+
+// Frame Builder
+void print_frame(Section section, size_t width)
+{
+  char *char_beg, *char_mid, *char_end;
+
+  char *str_frame = malloc((width + 1) * sizeof(*str_frame));
+  check_alloc(str_frame);
+
+  switch (section)
+  {
+    case S_TOP:    char_beg = "╔", char_mid = "═", char_end = "╗"; break;
+    case S_SPACER: char_beg = "║", char_mid = " ", char_end = "║"; break;
+    case S_BOTTOM: char_beg = "╚", char_mid = "═", char_end = "╝"; break;
+
+    default: return;
+  }
+
+  strcpy(str_frame, char_beg);
+
+  for (size_t i = 0; i < width; i++)
+  {
+    strcat(str_frame, char_mid);
+  }
+  strcat(str_frame, char_end);
+
+  printf("   %s\n", str_frame);
+  free(str_frame);
+}
 
 // Centre Output
 void centre_output(char *str, const size_t len)
@@ -52,7 +85,7 @@ void format_output(char *str_input, size_t len_max)
     else // Build line word by word
     {
       char *words, *cache;
-      char *str_builder = malloc(len_max * sizeof(*str_builder) + 1);
+      char *str_builder = malloc((len_max + 1) * sizeof(*str_builder));
       check_alloc(str_builder);
       memset(str_builder, 0, len_max);
 
