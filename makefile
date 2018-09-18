@@ -34,10 +34,6 @@ $(DIR_OBJ)/getinput.o: $(DIR_SRC)/getinput.c $(DIR_INC)/getinput.h $(DIR_INC)/ch
 $(DIR_OBJ)/printc.o: $(DIR_SRC)/printc.c $(DIR_INC)/printc.h $(DIR_INC)/checkalloc.h
 	$(CC) -c $(DIR_SRC)/printc.c -o $(DIR_OBJ)/printc.o $(CFLAGS)
 
-# printframe.o
-$(DIR_OBJ)/printframe.o: $(DIR_SRC)/printframe.c $(DIR_INC)/printframe.h $(DIR_INC)/checkalloc.h
-	$(CC) -c $(DIR_SRC)/printframe.c -o $(DIR_OBJ)/printframe.o $(CFLAGS)
-
 # termwidth.o
 $(DIR_OBJ)/termwidth.o: $(DIR_SRC)/termwidth.c $(DIR_INC)/termwidth.h
 	$(CC) -c $(DIR_SRC)/termwidth.c -o $(DIR_OBJ)/termwidth.o $(CFLAGS)
