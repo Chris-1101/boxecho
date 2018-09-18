@@ -61,7 +61,7 @@ void centre_output(char *str, const size_t len)
 }
 
 // Wrap Input Based on Terminal Width
-void format_output(char *str_input, size_t len_max)
+void format_output(char *str_input, const size_t len_max)
 {
   while(str_input)
   {
