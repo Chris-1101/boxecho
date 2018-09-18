@@ -13,7 +13,7 @@ typedef struct Width {
    * ---------------
    * Struct holding several relevant dimensions.
    *
-   *  · TERM: terminal width, equivalent to tput cols
+   *  · TERM: terminal width, equivalent to `tput cols`
    *  · FRAME: padded from the side of the terminal
    *  · CONTENT: padded from the side of the frame
    *
