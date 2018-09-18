@@ -37,8 +37,8 @@ void get_term_width(Width *w)
   else
   {
     unsigned short width_term = ws.ws_col;
-    unsigned short padding_frame = 4 * 2;
-    unsigned short padding_content = padding_frame + (3 * 2);
+    unsigned short padding_frame = 3 * 2;
+    unsigned short padding_content = padding_frame + (4 * 2);
 
     Width width = { width_term
                   , width_term - padding_frame
