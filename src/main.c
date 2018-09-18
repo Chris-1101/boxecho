@@ -17,7 +17,7 @@ typedef enum Section {
 } Section;
 
 // Frame Builder
-void print_frame(Section section, size_t width)
+void print_frame(Section section, const size_t width)
 {
   char *char_beg, *char_mid, *char_end;
 
@@ -34,8 +34,9 @@ void print_frame(Section section, size_t width)
   }
 
   strcpy(str_frame, char_beg);
+  size_t width_mid = width -2;
 
-  for (size_t i = 0; i < width; i++)
+  for (size_t i = 0; i < width_mid; i++)
   {
     strcat(str_frame, char_mid);
   }
