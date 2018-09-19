@@ -34,7 +34,7 @@ void print_frame(Section section, const size_t width)
   }
 
   strcpy(str_frame, char_beg);
-  size_t width_mid = width -2;
+  size_t width_mid = width - 2;
 
   for (size_t i = 0; i < width_mid; i++)
   {
@@ -86,9 +86,8 @@ void format_output(char *str_input, const size_t len_max)
     else // Build line word by word
     {
       char *words, *cache;
-      char *str_builder = malloc((len_max + 1) * sizeof(*str_builder));
+      char *str_builder = calloc(len_max + 1, sizeof(*str_builder));
       check_alloc(str_builder);
-      memset(str_builder, 0, len_max);
 
       // Break line into a sequence of words
       words = strtok_r(str_input, " ", &cache);
