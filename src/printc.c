@@ -18,11 +18,11 @@ void sprintc(const char *str, size_t len_ctr, char *res)
   short parity_str = len_str % 2;
   short parity_ctr = len_ctr % 2;
 
-  char parity_shift[] = "";
+  char parity_shift[2] = "";
 
   if (parity_ctr != parity_str)
   {
-    parity_shift[0] = ' ';
+    strcpy(parity_shift, " ");
     len_str++;
   }
 
