@@ -11,7 +11,7 @@ OBJECTS = $(SOURCES:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)
 
 # Compiler Options
 CC      = gcc
-CFLAGS  = -Wall -iquote $(DIR_INC)/
+CFLAGS  = -Wall -iquote $(DIR_INC)/ #-g
 TARGET  = boxecho
 
 # Make Options
