@@ -6,9 +6,11 @@
 #include "getinput.h"
 #include "checkalloc.h"
 
+// Consolidate Input From All Sources
 void get_input(int argc, char **argv, char *res)
 {
   char *str;
+  size_t len_space = 1;
 
   if (isatty(fileno(stdin)))
   {
@@ -18,13 +20,15 @@ void get_input(int argc, char **argv, char *res)
       {
         if (i == 1)
         {
-          str = malloc((strlen(argv[i]) + 1 + 1) * sizeof(*str));
+          size_t len_arg = strlen(argv[i]) + len_space + 1;
+          str = malloc(len_arg * sizeof(*str));
           check_alloc(str);
           strcpy(str, argv[i]);
         }
         else
         {
-          str = realloc(str, strlen(str) + strlen(argv[i]) + 1 + 1);
+          size_t len_args = strlen(str) + strlen(argv[i]) + len_space + 1;
+          str = realloc(str, len_args * sizeof(*str));
           check_alloc(str);
           strcat(str, argv[i]);
         }
@@ -47,13 +51,15 @@ void get_input(int argc, char **argv, char *res)
     {
       if (c == 0)
       {
-        str = malloc((strlen(buffer) + 1) * sizeof(*str));
+        size_t len_str = strlen(buffer) + 1;
+        str = malloc(len_str * sizeof(*str));
         check_alloc(str);
         strcpy(str, buffer);
       }
       else
       {
-        str = realloc(str, strlen(str) + strlen(buffer) + 1);
+        size_t len_str = strlen(str) + strlen(buffer) + 1;
+        str = realloc(str, len_str * sizeof(*str));
         check_alloc(str);
         strcat(str, buffer);
       }
