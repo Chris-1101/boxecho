@@ -2,6 +2,7 @@
 #define TRIMCHAR_H
 
 char *strtrm(char *str, const char chr);
+wchar_t *wcstrm(wchar_t *str, const wchar_t chr);
 
   /* Trim Character From String
    * --------------------------
