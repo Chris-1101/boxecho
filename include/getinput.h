@@ -2,6 +2,7 @@
 #define INPUT_H
 
 void get_input(int argc, char **argv, char *str);
+void get_winput(int argc, char **argv, wchar_t *res);
 
   /* Get Input From All Sources
    * --------------------------
