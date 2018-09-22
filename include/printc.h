@@ -4,6 +4,7 @@
 #include <stddef.h>
 
 void sprintc(const char *str, size_t len_ctr, char *res);
+void swprintc(const wchar_t *str, size_t len_ctr, wchar_t *res);
 
   /* String Print Centre
    * -------------------
@@ -20,6 +21,7 @@ void sprintc(const char *str, size_t len_ctr, char *res);
    * ------------------- */
 
 void printc(const char *str, size_t len);
+void wprintc(const wchar_t *str, size_t len);
 
   /* Print Centre
    * ------------
