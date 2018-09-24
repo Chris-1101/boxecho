@@ -11,8 +11,9 @@ OBJECTS = $(SOURCES:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)
 
 # Compiler Options
 CC      = gcc
-CFLAGS  = -Wall -iquote $(DIR_INC)/ #-g
-TARGET  = boxecho
+CFLAGS  = -Wall -iquote $(DIR_INC)/ -g
+BINARY  = boxecho
+DESTDIR = /usr/bin
 
 # Make Options
 .PHONY: default all clean
@@ -44,8 +45,18 @@ $(DIR_OBJ)/strtrm.o: $(DIR_SRC)/strtrm.c $(DIR_INC)/strtrm.h
 
 # Main Command
 all: $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(DIR_BIN)/$(TARGET) $(CFLAGS)
+	$(CC) $(OBJECTS) -o $(DIR_BIN)/$(BINARY) $(CFLAGS)
 
 # Clean Up Command
 clean:
 	rm -r $(DIR_OBJ)/*
+
+# Install Command
+.PHONY: install
+install: $(DIR_BIN)/$(BINARY)
+	sudo install -m 755 -s $< $(DESTDIR)/$(BINARY)
+
+# Uninstall Command
+.PHONY: uninstall
+uninstall:
+	sudo rm -f $(DESTDIR)/$(BINARY)
